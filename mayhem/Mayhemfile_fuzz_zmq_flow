@@ -1,0 +1,9 @@
+project: savantenvs/ntopng
+target: fuzz_zmq_flow
+
+cmds:
+  - cmd: /mayhem/fuzz_zmq_flow
+    libfuzzer: true
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_zmq_flow/testsuite
