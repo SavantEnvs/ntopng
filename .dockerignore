@@ -1,0 +1,19 @@
+# Build-context pruning for the mayhem/Dockerfile commit image. None of this is needed to build
+# or run the fuzz targets (fuzz_dissect_packet / fuzz_zmq_flow) — it's web UI assets and e2e test
+# fixtures that just bloat the build context. NOTE: .git/ is deliberately NOT excluded — §6.2
+# item 2 requires the full mayhem-branch git history baked into the image.
+
+# Web UI (httpdocs/dist is a large pre-built asset bundle; not linked into the fuzz binaries)
+httpdocs/dist/
+
+# e2e test fixtures (run against a live ntopng+redis+... stack; unrelated to the fuzz targets)
+tests/e2e/
+
+# Optional pro-only ClickHouse export backend (HAVE_CLICKHOUSE is unset in our fuzz build)
+third-party/clickhouse-cpp/
+
+# Misc tooling unrelated to the fuzz build (NOTE: packages/, python/, doc/, httpdocs/misc/ are
+# NOT excluded — ./configure's AC_CONFIG_FILES templates live there and it fails without them)
+kibana/
+docker/
+CHANGELOG.md

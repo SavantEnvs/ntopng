@@ -1,0 +1,10 @@
+project: savantenvs/ntopng
+target: fuzz_dissect_packet
+
+cmds:
+  - cmd: /mayhem/fuzz_dissect_packet
+    libfuzzer: true
+    dictionary: /mayhem/fuzz_dissect_packet.dict
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_dissect_packet/testsuite
